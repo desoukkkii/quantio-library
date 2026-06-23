@@ -1,55 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#4f46e5">
-  <title>Quantio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav id="topbar">
-    <div class="tb-l">
-      <span class="tb-brand">Quantio</span>
-      <div class="tb-nav" id="tb-nav">
-        <button class="tb-btn active" data-view="dashboard"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></button>
-        <button class="tb-btn" data-view="books"><i class="fa-solid fa-book"></i><span>Books</span></button>
-        <button class="tb-btn" data-view="members"><i class="fa-solid fa-users"></i><span>Members</span></button>
-        <button class="tb-btn" data-view="borrowing"><i class="fa-solid fa-hand-holding-heart"></i><span>Borrowing</span></button>
-        <button class="tb-btn" data-view="overdue"><i class="fa-solid fa-clock"></i><span>Overdue</span><span class="badge" id="badge-overdue" hidden></span></button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta
+      name="description"
+      content="Quantio — Modern Library Management System"
+    />
+    <title>Quantio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="#content" class="skip-link">Skip to main content</a>
+
+    <nav id="topbar" role="navigation" aria-label="Main navigation">
+      <div class="tb-l">
+        <span class="tb-brand" aria-label="Quantio home">
+          <i
+            class="fa-solid fa-book-open-reader tb-brand-icon"
+            aria-hidden="true"
+          ></i>
+          Quantio
+        </span>
+        <div class="tb-divider" aria-hidden="true"></div>
+        <div class="tb-nav" id="tb-nav" role="tablist" aria-label="Views">
+          <button
+            class="tb-btn active"
+            data-view="dashboard"
+            role="tab"
+            aria-selected="true"
+            aria-controls="view-dashboard"
+          >
+            <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+            <span>Dashboard</span>
+          </button>
+          <button
+            class="tb-btn"
+            data-view="books"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-books"
+          >
+            <i class="fa-solid fa-book" aria-hidden="true"></i>
+            <span>Books</span>
+          </button>
+          <button
+            class="tb-btn"
+            data-view="members"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-members"
+          >
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <span>Members</span>
+          </button>
+          <button
+            class="tb-btn"
+            data-view="borrowing"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-borrowing"
+          >
+            <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+            <span>Borrowing</span>
+          </button>
+          <button
+            class="tb-btn"
+            data-view="overdue"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-overdue"
+          >
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            <span>Overdue</span>
+            <span
+              class="badge"
+              id="badge-overdue"
+              hidden
+              aria-live="polite"
+              aria-label="overdue items"
+            ></span>
+          </button>
+        </div>
+      </div>
+      <div class="tb-r">
+        <button
+          class="tb-icon"
+          id="btn-export"
+          title="Export books as CSV"
+          aria-label="Export books as CSV"
+        >
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+
+    <main id="content" tabindex="-1">
+      <section
+        id="view-dashboard"
+        class="view active"
+        role="tabpanel"
+        aria-labelledby="tab-dashboard"
+      ></section>
+      <section
+        id="view-books"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-books"
+      ></section>
+      <section
+        id="view-members"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-members"
+      ></section>
+      <section
+        id="view-borrowing"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-borrowing"
+      ></section>
+      <section
+        id="view-overdue"
+        class="view"
+        role="tabpanel"
+        aria-labelledby="tab-overdue"
+      ></section>
+    </main>
+
+    <div
+      id="modal-root"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-bg" id="modal-bg"></div>
+      <div class="modal-bx" id="modal-bx">
+        <div class="modal-hd">
+          <h2 id="modal-title"></h2>
+          <button class="modal-x" id="modal-x" aria-label="Close dialog">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-bd" id="modal-bd"></div>
+        <div class="modal-ft" id="modal-ft"></div>
       </div>
     </div>
-    <div class="tb-r">
-      <button class="tb-icon" id="btn-export" title="Export"><i class="fa-solid fa-download"></i></button>
+
+    <div id="toast-pool" aria-live="polite" aria-atomic="false"></div>
+
+    <div class="kbd" aria-label="Keyboard shortcut hint">
+      <i class="fa-solid fa-keyboard" aria-hidden="true"></i>
+      Press <kbd>/</kbd> to search
     </div>
-  </nav>
 
-  <main id="content">
-    <section id="view-dashboard" class="view active"></section>
-    <section id="view-books" class="view"></section>
-    <section id="view-members" class="view"></section>
-    <section id="view-borrowing" class="view"></section>
-    <section id="view-overdue" class="view"></section>
-  </main>
-
-  <div id="modal-root" hidden>
-    <div class="modal-bg" id="modal-bg"></div>
-    <div class="modal-bx" id="modal-bx">
-      <div class="modal-hd">
-        <h2 id="modal-title"></h2>
-        <button class="modal-x" id="modal-x" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-bd" id="modal-bd"></div>
-      <div class="modal-ft" id="modal-ft"></div>
-    </div>
-  </div>
-
-  <div id="toast-pool"></div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

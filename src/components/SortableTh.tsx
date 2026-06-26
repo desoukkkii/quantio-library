@@ -17,9 +17,11 @@ export default function SortableTh({ col, label, currentCol, currentDir, onSort 
       aria-sort={ariaSort}
       onClick={() => onSort(col)}
     >
-      {label}
-      <span className="inline-block w-3 ml-1 text-[0.58rem] opacity-25">
-        <i aria-hidden="true" className="fa-solid fa-sort" />
+      <span className="inline-flex items-center min-h-[44px] sm:min-h-0">
+        {label}
+        <span className="inline-block w-3 ml-1 text-[0.58rem] opacity-25">
+          <i aria-hidden="true" className="fa-solid fa-sort" />
+        </span>
       </span>
     </th>
   );

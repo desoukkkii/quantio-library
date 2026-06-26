@@ -34,7 +34,7 @@ export default function Sidebar({ activeView, onNavigate, onExport }: SidebarPro
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-3 px-3 overflow-y-auto">
+      <nav className="flex-1 py-3 px-2 sm:px-3 overflow-y-auto overscroll-contain">
         <div className="text-[0.6rem] font-bold uppercase tracking-widest text-t3 px-3 pb-2 pt-1">Main Menu</div>
         {NAV_ITEMS.map((item) => {
           const isActive = activeView === item.view;

@@ -97,9 +97,11 @@ function AppContent() {
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/30 z-[99]"
+          className="lg:hidden fixed inset-0 z-[99] animate-bg-fade"
           onClick={() => setSidebarOpen(false)}
-        />
+        >
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+        </div>
       )}
 
       {/* Sidebar */}
@@ -113,7 +115,7 @@ function AppContent() {
       <main
         id="content"
         tabIndex={-1}
-        className="min-h-screen lg:ml-[240px] pt-[72px] lg:pt-6 px-10 pb-9 max-[860px]:px-6 max-[860px]:pt-[68px] max-[860px]:pb-6 max-[640px]:px-4 max-[640px]:pt-[64px] max-[640px]:pb-5"
+        className="min-h-screen lg:ml-[240px] pt-[72px] lg:pt-6 px-6 xl:px-10 pb-9 max-[640px]:px-4 max-[640px]:pt-[64px] max-[640px]:pb-5"
       >
         <div className="max-w-[1400px] mx-auto">
           <div id={`view-${activeView}`} key={activeView}>

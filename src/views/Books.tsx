@@ -107,13 +107,13 @@ export default function Books() {
   return (
     <div className="animate-fade-slide">
       {/* Header */}
-      <div className="flex items-end justify-between mb-7 flex-wrap gap-4">
+      <div className="flex items-start sm:items-end justify-between mb-5 sm:mb-7 flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-9 h-9 rounded-lg bg-pg flex items-center justify-center text-p shrink-0">
               <i aria-hidden="true" className="fa-solid fa-book text-sm" />
             </div>
-            <h1 className="text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Books</h1>
+            <h1 className="text-[1.25rem] sm:text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Books</h1>
           </div>
           <p className="text-[0.83rem] text-t3 ml-[45px]">{state.books.length} total titles</p>
         </div>
@@ -121,14 +121,14 @@ export default function Books() {
       </div>
 
       {/* Search & Filter */}
-      <div className="flex items-center gap-3 mb-6 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
         <SearchBox
           value={vs.search}
           onChange={(v) => setVS((prev) => ({ ...prev, search: v, page: 1 }))}
           placeholder="Search by title, author, or ISBN…"
           label="Search books"
         />
-        <div className="flex gap-1.5 flex-wrap">
+        <div className="flex gap-1.5 overflow-x-auto pb-1 w-full sm:w-auto scrollbar-none">
           <button
             onClick={() => setVS((prev) => ({ ...prev, filter: "", page: 1 }))}
             className={`px-3 py-[7px] rounded-md text-[0.75rem] font-semibold transition-all duration-[0.15s] border ${
@@ -153,7 +153,7 @@ export default function Books() {
 
       {/* Books Grid */}
       {filtered.items.length ? (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] max-[400px]:grid-cols-1 gap-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3 sm:gap-4">
           {filtered.items.map((b) => (
             <BookCard key={b.id} book={b} onEdit={openEdit} onDelete={openDel} />
           ))}
@@ -199,7 +199,7 @@ export default function Books() {
             className="input"
           />
         </div>
-        <div className="grid grid-cols-2 max-[640px]:grid-cols-1 gap-3 mb-0.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-0.5">
           <div className="flex flex-col gap-[5px] mb-3.5">
             <label className="text-[0.7rem] font-bold uppercase tracking-widest text-t3">Author</label>
             <input
@@ -222,7 +222,7 @@ export default function Books() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 max-[640px]:grid-cols-1 gap-3 mb-0.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-0.5">
           <div className="flex flex-col gap-[5px] mb-3.5">
             <label className="text-[0.7rem] font-bold uppercase tracking-widest text-t3">ISBN</label>
             <input

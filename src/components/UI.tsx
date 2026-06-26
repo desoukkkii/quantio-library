@@ -4,7 +4,7 @@ interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-const base = "inline-flex items-center gap-[7px] px-[18px] py-[9px] rounded-sm font-semibold text-[0.83rem] cursor-pointer border-none transition-all duration-[0.22s] whitespace-nowrap leading-[1.4] active:scale-[0.97]";
+const base = "inline-flex items-center gap-[7px] px-[18px] py-[9px] rounded-sm font-semibold text-[0.83rem] cursor-pointer border-none transition-all duration-[0.22s] whitespace-nowrap leading-[1.4] active:scale-[0.97] min-touch";
 
 export function BtnPrimary({ children, className = "", ...props }: BtnProps) {
   return (
@@ -40,7 +40,7 @@ export function BtnDanger({ children, className = "", ...props }: BtnProps) {
 
 export function BtnIcon({ children, className = "", ...props }: BtnProps) {
   return (
-    <button {...props} className={`bg-transparent border border-transparent cursor-pointer text-t3 px-2 py-[6px] rounded-sm text-[0.82rem] leading-none transition-all duration-[0.15s] hover:bg-s3 hover:text-t2 hover:border-border ${className}`}>
+    <button {...props} className={`bg-transparent border border-transparent cursor-pointer text-t3 px-2.5 py-[8px] rounded-sm text-[0.82rem] leading-none transition-all duration-[0.15s] hover:bg-s3 hover:text-t2 hover:border-border min-touch ${className}`}>
       {children}
     </button>
   );
@@ -48,7 +48,7 @@ export function BtnIcon({ children, className = "", ...props }: BtnProps) {
 
 export function BtnIconDanger({ children, className = "", ...props }: BtnProps) {
   return (
-    <button {...props} className={`bg-transparent border border-transparent cursor-pointer text-t3 px-2 py-[6px] rounded-sm text-[0.82rem] leading-none transition-all duration-[0.15s] hover:bg-rg hover:text-r hover:border-r-border ${className}`}>
+    <button {...props} className={`bg-transparent border border-transparent cursor-pointer text-t3 px-2.5 py-[8px] rounded-sm text-[0.82rem] leading-none transition-all duration-[0.15s] hover:bg-rg hover:text-r hover:border-r-border min-touch ${className}`}>
       {children}
     </button>
   );

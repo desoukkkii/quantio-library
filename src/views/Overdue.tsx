@@ -61,21 +61,21 @@ export default function Overdue() {
   return (
     <div className="animate-fade-slide">
       {/* Header */}
-      <div className="flex items-end justify-between mb-7 flex-wrap gap-4">
+      <div className="flex items-start sm:items-end justify-between mb-5 sm:mb-7 flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-9 h-9 rounded-lg bg-rg flex items-center justify-center text-r shrink-0">
               <i aria-hidden="true" className="fa-solid fa-clock text-sm" />
             </div>
-            <h1 className="text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Overdue</h1>
+            <h1 className="text-[1.25rem] sm:text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Overdue</h1>
           </div>
           <p className="text-[0.83rem] text-t3 ml-[45px]">{overdueItems.length} item{overdueItems.length !== 1 ? "s" : ""} overdue</p>
         </div>
-        <div className="flex items-center gap-2 bg-rg border border-r-border rounded-lg px-4 py-2.5">
+        <div className="flex items-center gap-2 bg-rg border border-r-border rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shrink-0">
           <i aria-hidden="true" className="fa-solid fa-coins text-r text-sm" />
           <div>
             <div className="text-[0.6rem] font-bold uppercase tracking-wider text-r">Total Late Fees</div>
-            <div className="text-base font-extrabold text-r tabular-nums">KSH {totalFees.toLocaleString()}</div>
+            <div className="text-sm sm:text-base font-extrabold text-r tabular-nums">KSH {totalFees.toLocaleString()}</div>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function Overdue() {
 
           {/* Table */}
           <div className="bg-white border border-border rounded-xl overflow-x-auto shadow-xs">
-            <table className="w-full border-collapse text-[0.85rem] min-w-[600px]" aria-label="Overdue books table">
+            <table className="w-full border-collapse text-[0.85rem] min-w-[600px] card-table" aria-label="Overdue books table">
               <thead>
                 <tr>
                   <SortableTh col="bookTitle" label="Book" currentCol={vs.sort.col} currentDir={vs.sort.dir} onSort={handleSort} />
@@ -132,27 +132,27 @@ export default function Overdue() {
                   };
                   return (
                     <tr key={t.id} className={`border-b border-border last:border-none transition-all duration-[0.15s] ${i % 2 === 1 ? "bg-s2/40" : ""} hover:bg-[#fef2f2]`}>
-                      <td className="px-4 py-3 align-middle">
+                      <td className="px-4 py-3 align-middle" data-label="Book">
                         <strong className="text-text font-semibold">{t.bookTitle}</strong>
                       </td>
-                      <td className="px-4 py-3 text-t2 align-middle">{t.memberName}</td>
-                      <td className="px-4 py-3 align-middle">
+                      <td className="px-4 py-3 text-t2 align-middle" data-label="Member">{t.memberName}</td>
+                      <td className="px-4 py-3 align-middle" data-label="Due Date">
                         <span className="text-[0.78rem] text-r font-medium">{t.dueDate}</span>
                       </td>
-                      <td className="px-4 py-3 align-middle">
+                      <td className="px-4 py-3 align-middle" data-label="Days Late">
                         <span className={`inline-flex items-center gap-1.5 text-[0.65rem] font-bold px-2.5 py-1 rounded-full border ${sevColors[severity]}`}>
                           <span className={`w-1.5 h-1.5 rounded-full ${sevDots[severity]}`} />
                           {days} day{days !== 1 ? "s" : ""}
                         </span>
                       </td>
-                      <td className="px-4 py-3 align-middle">
+                      <td className="px-4 py-3 align-middle" data-label="Late Fee">
                         <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold px-2.5 py-1 rounded-full border bg-rg text-r border-r-border">
                           <i aria-hidden="true" className="fa-solid fa-coins text-[0.6rem]" />
                           KSH {fee.toLocaleString()}
                         </span>
                       </td>
-                      <td className="px-4 py-3 align-middle">
-                        <div className="flex gap-1.5 items-center">
+                      <td className="px-4 py-3 align-middle" data-label="">
+                        <div className="flex gap-1.5 items-center justify-end sm:justify-start">
                           <BtnSuccess onClick={() => handleReturn(t.id)}>
                             <i aria-hidden="true" className="fa-solid fa-rotate-left" />
                             Return

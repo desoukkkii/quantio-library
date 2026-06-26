@@ -80,24 +80,24 @@ export default function Dashboard() {
   return (
     <div className="animate-fade-slide space-y-6">
       {/* Header */}
-      <div className="flex items-end justify-between mb-7 flex-wrap gap-4">
+      <div className="flex items-start sm:items-end justify-between mb-5 sm:mb-7 flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-9 h-9 rounded-lg bg-pg flex items-center justify-center text-p shrink-0">
               <i aria-hidden="true" className="fa-solid fa-chart-pie text-sm" />
             </div>
-            <h1 className="text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Dashboard</h1>
+            <h1 className="text-[1.25rem] sm:text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Dashboard</h1>
           </div>
           <p className="text-[0.83rem] text-t3 ml-[45px]">Library overview &amp; analytics</p>
         </div>
-        <span className="inline-flex items-center gap-1.5 text-[0.72rem] text-t3 bg-white border border-border rounded-lg px-3.5 py-2 shadow-xs">
+        <span className="inline-flex items-center gap-1.5 text-[0.72rem] text-t3 bg-white border border-border rounded-lg px-3.5 py-2 shadow-xs shrink-0">
           <span className="w-1.5 h-1.5 rounded-full bg-g animate-pulse" />
           {new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
         </span>
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-5 max-[1100px]:grid-cols-3 max-[700px]:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {[
           { label: "Total Books", value: bookCount, sub: `${state.books.length} titles`, icon: "fa-book", color: "indigo" },
           { label: "Members", value: memberCount, sub: `${state.members.length} registered`, icon: "fa-users", color: "emerald" },
@@ -120,7 +120,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
         {/* Genre Distribution */}
         <div className="lg:col-span-2 bg-white border border-border rounded-xl p-6 shadow-xs transition-all duration-[0.3s] hover:shadow-md hover:border-bh">
           <div className="flex items-center justify-between mb-6">

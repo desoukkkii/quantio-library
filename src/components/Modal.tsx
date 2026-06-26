@@ -32,7 +32,7 @@ export default function Modal({ isOpen, onClose, title, children, footer, size }
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-5 max-[400px]:p-3">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-5">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-bg-fade" onClick={onClose} />
       <div
         role="dialog"
@@ -41,7 +41,7 @@ export default function Modal({ isOpen, onClose, title, children, footer, size }
           size === "slim" ? "max-w-[360px] w-full" : size === "wide" ? "max-w-[680px] w-full" : "max-w-[500px] w-full"
         }`}
       >
-        <div className="flex items-center justify-between px-[22px] py-[18px] border-b border-border shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-[22px] py-[14px] sm:py-[18px] border-b border-border shrink-0">
           <h2 className="text-[0.95rem] font-bold font-heading tracking-tight text-text flex items-center gap-2.5">
             {title}
           </h2>
@@ -53,8 +53,8 @@ export default function Modal({ isOpen, onClose, title, children, footer, size }
             <i aria-hidden="true" className="fa-solid fa-xmark" />
           </button>
         </div>
-        <div className="px-[22px] py-[22px] overflow-y-auto">{children}</div>
-        <div className="flex justify-end gap-2.5 px-[22px] py-4 border-t border-border bg-s2/80 shrink-0 rounded-b-xl">
+        <div className="px-4 sm:px-[22px] py-4 sm:py-[22px] overflow-y-auto">{children}</div>
+        <div className="flex justify-end gap-2.5 px-4 sm:px-[22px] py-3 sm:py-4 border-t border-border bg-s2/80 shrink-0 rounded-b-xl">
           {footer}
         </div>
       </div>

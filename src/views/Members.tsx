@@ -94,13 +94,13 @@ export default function Members() {
   return (
     <div className="animate-fade-slide">
       {/* Header */}
-      <div className="flex items-end justify-between mb-7 flex-wrap gap-4">
+      <div className="flex items-start sm:items-end justify-between mb-5 sm:mb-7 flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-9 h-9 rounded-lg bg-gg flex items-center justify-center text-g shrink-0">
               <i aria-hidden="true" className="fa-solid fa-users text-sm" />
             </div>
-            <h1 className="text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Members</h1>
+            <h1 className="text-[1.25rem] sm:text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Members</h1>
           </div>
           <p className="text-[0.83rem] text-t3 ml-[45px]">{state.members.length} registered</p>
         </div>
@@ -108,7 +108,7 @@ export default function Members() {
       </div>
 
       {/* Search */}
-      <div className="flex items-center gap-3 mb-6 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
         <SearchBox
           value={vs.search}
           onChange={(v) => setVS((prev) => ({ ...prev, search: v, page: 1 }))}
@@ -118,8 +118,8 @@ export default function Members() {
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-border rounded-xl overflow-x-auto shadow-xs">
-        <table className="w-full border-collapse text-[0.85rem] min-w-[600px]" aria-label="Members table">
+        <div className="bg-white border border-border rounded-xl overflow-x-auto shadow-xs">
+        <table className="w-full border-collapse text-[0.85rem] min-w-[600px] card-table" aria-label="Members table">
           <thead>
             <tr>
               <SortableTh col="name" label="Member" currentCol={vs.sort.col} currentDir={vs.sort.dir} onSort={handleSort} />
@@ -138,7 +138,7 @@ export default function Members() {
                 ).length;
                 return (
                   <tr key={m.id} className={`border-b border-border last:border-none transition-all duration-[0.15s] hover:bg-s2 ${i % 2 === 1 ? "bg-s2/40" : ""}`}>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 align-middle" data-label="Member">
                       <div className="flex items-center gap-3">
                         <span className={`w-9 h-9 rounded-full bg-gradient-to-br ${AVATAR_COLORS[m.id % AVATAR_COLORS.length]} text-white font-bold text-[0.75rem] inline-flex items-center justify-center shrink-0 shadow-xs`}>
                           {m.name[0]}
@@ -154,14 +154,14 @@ export default function Members() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-t2 align-middle">{m.email}</td>
-                    <td className="px-4 py-3 text-t2 align-middle">
+                    <td className="px-4 py-3 text-t2 align-middle" data-label="Email">{m.email}</td>
+                    <td className="px-4 py-3 text-t2 align-middle" data-label="Phone">
                       <span className="font-mono text-[0.82rem]">{m.phone.slice(0, 8)}…</span>
                     </td>
-                    <td className="px-4 py-3 text-t2 align-middle">
+                    <td className="px-4 py-3 text-t2 align-middle" data-label="Joined">
                       <span className="text-[0.78rem]">{m.joined}</span>
                     </td>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 align-middle" data-label="Status">
                       <span className={`inline-flex items-center gap-1.5 text-[0.65rem] font-bold px-2.5 py-1 rounded-full border ${
                         borrows === 0
                           ? "bg-gg text-g border-g-border"
@@ -171,8 +171,8 @@ export default function Members() {
                         {borrows === 0 ? "Active" : "Borrowing"}
                       </span>
                     </td>
-                    <td className="px-4 py-3 align-middle">
-                      <div className="flex gap-1 items-center">
+                    <td className="px-4 py-3 align-middle" data-label="Actions">
+                      <div className="flex gap-1 items-center justify-end sm:justify-start">
                         <BtnIcon onClick={() => openEdit(m)} aria-label={`Edit ${m.name}`}>
                           <i aria-hidden="true" className="fa-solid fa-pen" />
                         </BtnIcon>
@@ -232,7 +232,7 @@ export default function Members() {
             className="input"
           />
         </div>
-        <div className="grid grid-cols-2 max-[640px]:grid-cols-1 gap-3 mb-0.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-0.5">
           <div className="flex flex-col gap-[5px] mb-4">
             <label className="text-[0.7rem] font-bold uppercase tracking-widest text-t3">Email</label>
             <input

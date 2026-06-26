@@ -129,13 +129,13 @@ export default function Borrowing() {
   return (
     <div className="animate-fade-slide">
       {/* Header */}
-      <div className="flex items-end justify-between mb-7 flex-wrap gap-4">
+      <div className="flex items-start sm:items-end justify-between mb-5 sm:mb-7 flex-col sm:flex-row gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-9 h-9 rounded-lg bg-cg flex items-center justify-center text-c shrink-0">
               <i aria-hidden="true" className="fa-solid fa-hand-holding-heart text-sm" />
             </div>
-            <h1 className="text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Borrowing</h1>
+            <h1 className="text-[1.25rem] sm:text-[1.45rem] font-extrabold font-heading tracking-tight text-text leading-tight">Borrowing</h1>
           </div>
           <p className="text-[0.83rem] text-t3 ml-[45px]">{activeCount} active · {returnedCount} returned</p>
         </div>
@@ -143,7 +143,7 @@ export default function Borrowing() {
       </div>
 
       {/* Search & Filter */}
-      <div className="flex items-center gap-3 mb-6 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
         <SearchBox
           value={vs.search}
           onChange={(v) => setVS((prev) => ({ ...prev, search: v, page: 1 }))}
@@ -167,7 +167,7 @@ export default function Borrowing() {
 
       {/* Table */}
       <div className="bg-white border border-border rounded-xl overflow-x-auto shadow-xs">
-        <table className="w-full border-collapse text-[0.85rem] min-w-[600px]" aria-label="Borrowing records table">
+          <table className="w-full border-collapse text-[0.85rem] min-w-[600px] card-table" aria-label="Borrowing records table">
           <thead>
             <tr>
               <SortableTh col="bookTitle" label="Book" currentCol={vs.sort.col} currentDir={vs.sort.dir} onSort={handleSort} />
@@ -195,17 +195,17 @@ export default function Borrowing() {
                 };
                 return (
                   <tr key={t.id} className={`border-b border-border last:border-none transition-all duration-[0.15s] ${isOD ? "bg-[#fef2f2]" : i % 2 === 1 ? "bg-s2/40" : ""} hover:bg-s2`}>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 align-middle" data-label="Book">
                       <strong className="text-text font-semibold">{t.bookTitle}</strong>
                     </td>
-                    <td className="px-4 py-3 text-t2 align-middle">{t.memberName}</td>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 text-t2 align-middle" data-label="Member">{t.memberName}</td>
+                    <td className="px-4 py-3 align-middle" data-label="Borrowed">
                       <span className="text-[0.78rem] text-t2">{t.borrowDate}</span>
                     </td>
-                    <td className={`px-4 py-3 align-middle font-medium ${isOD ? "text-r" : "text-t2"}`}>
+                    <td className={`px-4 py-3 align-middle font-medium ${isOD ? "text-r" : "text-t2"}`} data-label="Due">
                       <span className="text-[0.78rem]">{t.dueDate}</span>
                     </td>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 align-middle" data-label="Status">
                       <span className={`inline-flex items-center gap-1.5 text-[0.65rem] font-bold px-2.5 py-1 rounded-full border ${stColors[st] || ""}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${stDot[st] || ""}`} />
                         {stLabel}
@@ -217,14 +217,14 @@ export default function Borrowing() {
                         <span className="block text-[0.6rem] text-t4 mt-0.5">{t.returnDate}</span>
                       )}
                     </td>
-                    <td className="px-4 py-3 align-middle">
+                    <td className="px-4 py-3 align-middle" data-label="">
                       {t.returnDate ? (
                         <span className="inline-flex items-center gap-1.5 text-[0.65rem] text-t3">
                           <i aria-hidden="true" className="fa-solid fa-check-circle text-g text-xs" />
                           Completed
                         </span>
                       ) : (
-                        <div className="flex gap-1 items-center">
+                        <div className="flex gap-1 items-center justify-end sm:justify-start">
                           <BtnIcon onClick={() => handleReturn(t.id)} aria-label="Return book">
                             <i aria-hidden="true" className="fa-solid fa-rotate-left" />
                           </BtnIcon>

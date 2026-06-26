@@ -25,7 +25,7 @@ export default function SearchBox({ value, onChange, placeholder, label, delay =
   }, [local, delay]);
 
   return (
-    <div className="flex-1 min-w-[180px] max-[400px]:min-w-0 flex items-center gap-2.5 bg-white border border-border rounded-lg px-3.5 py-[9px] transition-all duration-[0.22s] shadow-xs focus-within:border-p focus-within:shadow-[0_0_0_3px_rgba(79,70,229,0.1)]">
+    <div className="flex-1 min-w-[160px] sm:min-w-[200px] w-full sm:w-auto flex items-center gap-2.5 bg-white border border-border rounded-lg px-3.5 py-[9px] sm:py-[7px] transition-all duration-[0.22s] shadow-xs focus-within:border-p focus-within:shadow-[0_0_0_3px_rgba(79,70,229,0.1)]">
       <i aria-hidden="true" className="fa-solid fa-magnifying-glass text-t3 text-[0.82rem] shrink-0" />
       <input
         type="search"

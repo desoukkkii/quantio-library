@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    background-image: radial-gradient(rgba(79, 70, 229, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(79, 70, 229, 0.1);
+    color: #3730a3;
+  }
+
+  :focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e4e6f0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8cbdb;
+}
+
+/* Hide scrollbar for nav */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Sortable table header styling */
+th.st.asc .si,
+th.st.dsc .si {
+  opacity: 1 !important;
+  color: #4f46e5;
+}
+
+th.st:hover {
+  color: #0f1117;
+}
+
+/* Tabular numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Shared input style */
+.input {
+  padding: 10px 13px;
+  border: 1px solid #e4e6f0;
+  border-radius: 6px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  color: #0f1117;
+  background: #ffffff;
+  outline: none;
+  transition: all 0.22s ease;
+  box-shadow: 0 1px 2px rgba(15, 17, 23, 0.05);
+}
+.input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), 0 1px 2px rgba(15, 17, 23, 0.05);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print */
+@media print {
+  nav,
+  .fixed,
+  .skip-link {
+    display: none !important;
+  }
+  #content {
+    margin-top: 0;
+    padding: 16px;
+  }
+  body {
+    background: #fff;
+  }
+  .stat,
+  .panel {
+    break-inside: avoid;
+  }
+}

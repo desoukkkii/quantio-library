@@ -1,0 +1,59 @@
+interface PaginationProps {
+  total: number;
+  page: number;
+  maxPage: number;
+  onPageChange: (page: number) => void;
+  label?: string;
+}
+
+export default function Pagination({ total, page, maxPage, onPageChange, label }: PaginationProps) {
+  if (total <= 10) return null;
+
+  const start = Math.max(1, Math.min(page - 2, maxPage - 4));
+  const end = Math.min(maxPage, start + 4);
+  const pages: number[] = [];
+  for (let i = start; i <= end; i++) pages.push(i);
+
+  const from = (page - 1) * 10 + 1;
+  const to = Math.min(page * 10, total);
+
+  return (
+    <div className="flex items-center justify-between mt-5 flex-wrap gap-3">
+      <span className="text-[0.75rem] text-t3">
+        Showing <strong className="text-t2">{from}–{to}</strong> of <strong className="text-t2">{total}</strong> {label || "items"}
+      </span>
+      <nav className="flex items-center gap-1" aria-label="Pagination">
+        <button
+          onClick={() => onPageChange(page - 1)}
+          disabled={page <= 1}
+          className="min-w-[34px] h-[34px] inline-flex items-center justify-center border border-border rounded-md bg-white text-t2 text-[0.82rem] cursor-pointer transition-all duration-[0.15s] hover:bg-s3 hover:border-bh hover:text-text disabled:opacity-[0.35] disabled:cursor-default disabled:shadow-none px-2.5 shadow-xs"
+          aria-label="Previous page"
+        >
+          <i aria-hidden="true" className="fa-solid fa-chevron-left" />
+        </button>
+        {pages.map((p) => (
+          <button
+            key={p}
+            onClick={() => onPageChange(p)}
+            className={`min-w-[34px] h-[34px] inline-flex items-center justify-center border rounded-md text-[0.82rem] cursor-pointer transition-all duration-[0.15s] px-2.5 shadow-xs ${
+              p === page
+                ? "bg-pg border-p-border text-p font-bold"
+                : "border-border bg-white text-t2 hover:bg-s3 hover:border-bh hover:text-text"
+            }`}
+            aria-current={p === page ? "page" : undefined}
+          >
+            {p}
+          </button>
+        ))}
+        <button
+          onClick={() => onPageChange(page + 1)}
+          disabled={page >= maxPage}
+          className="min-w-[34px] h-[34px] inline-flex items-center justify-center border border-border rounded-md bg-white text-t2 text-[0.82rem] cursor-pointer transition-all duration-[0.15s] hover:bg-s3 hover:border-bh hover:text-text disabled:opacity-[0.35] disabled:cursor-default disabled:shadow-none px-2.5 shadow-xs"
+          aria-label="Next page"
+        >
+          <i aria-hidden="true" className="fa-solid fa-chevron-right" />
+        </button>
+      </nav>
+    </div>
+  );
+}
